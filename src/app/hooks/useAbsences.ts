@@ -6,7 +6,7 @@ import formatDate from '../helpers/formatDate';
 const fetchAbsences = async (): Promise<Absence[]> => {
   try {
     const response = await fetch(
-      'https://front-end-kata.brighthr.workers.dev/api/absences'
+      process.env.NEXT_PUBLIC_BRIGHTHR_API_URL + 'absences'
     );
     if (!response.ok) {
       throw new Error(
@@ -27,7 +27,7 @@ const fetchAbsences = async (): Promise<Absence[]> => {
 const fetchAbsenceConflicts = async (absenceId: string): Promise<boolean> => {
   try {
     const response = await fetch(
-      `https://front-end-kata.brighthr.workers.dev/api/conflict/${absenceId}`
+      process.env.NEXT_PUBLIC_BRIGHTHR_API_URL + 'conflict/' + absenceId
     );
     if (!response.ok) {
       throw new Error(
