@@ -15,18 +15,18 @@ const AbsenceList = () => {
   if (error) return <div>An error occurred: {error.message}</div>;
 
   return (
-    <>
+    <div className='flex flex-col'>
       <DataTable
         columns={getColumns}
         data={absences ?? []}
         employeeId={employeeId}
       />
-      <div>
+      <div className='flex justify-center'>
         {employeeId && (
           <Button onClick={() => setEmployeeId('')}>Clear Filter</Button>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
