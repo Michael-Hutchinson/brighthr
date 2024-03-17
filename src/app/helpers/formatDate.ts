@@ -1,4 +1,4 @@
-const formatDate = (dateString: string): string => {
+const formatDate = (dateString: Date): string => {
   const date = new Date(dateString);
   return new Intl.DateTimeFormat('en-UK', {
     year: 'numeric',

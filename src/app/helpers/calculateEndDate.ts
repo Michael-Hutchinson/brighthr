@@ -1,7 +1,7 @@
-const calculateEndDate = (startDate: string, days: number): string => {
+const calculateEndDate = (startDate: string, days: number): Date => {
   const endDate = new Date(startDate);
   endDate.setDate(endDate.getDate() + days - 1);
-  return endDate.toISOString().split('T')[0];
+  return endDate;
 };
 
 export default calculateEndDate;

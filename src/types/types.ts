@@ -6,7 +6,7 @@ export interface Employee {
 
 export interface Absence {
   id: number;
-  startDate: string;
+  startDate: Date;
   days: number;
   absenceType: string;
   employee: Employee;
