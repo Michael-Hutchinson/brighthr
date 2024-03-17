@@ -2,6 +2,7 @@
 
 import calculateEndDate from '@/app/helpers/calculateEndDate';
 import formatDate from '@/app/helpers/formatDate';
+import { Button } from '@/components/ui/button';
 import {
   Tooltip,
   TooltipContent,
@@ -10,6 +11,7 @@ import {
 } from '@/components/ui/tooltip';
 import { AbsenceWithConflict } from '@/types/types';
 import { ColumnDef } from '@tanstack/react-table';
+import { LuArrowDownUp } from 'react-icons/lu';
 import { MdErrorOutline } from 'react-icons/md';
 
 const columns: ColumnDef<AbsenceWithConflict>[] = [
@@ -17,8 +19,18 @@ const columns: ColumnDef<AbsenceWithConflict>[] = [
     accessorFn: (row) => `${row.employee.firstName} ${row.employee.lastName}`,
     id: 'fullName',
     accessorKey: 'employeeName',
-    header: 'Employee Name',
     cell: (info) => info.getValue(),
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Employee Name
+          <LuArrowDownUp className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: 'startDate',
@@ -35,7 +47,17 @@ const columns: ColumnDef<AbsenceWithConflict>[] = [
   },
   {
     accessorKey: 'absenceType',
-    header: 'Absence Type',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Absence Type
+          <LuArrowDownUp className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: 'status',
