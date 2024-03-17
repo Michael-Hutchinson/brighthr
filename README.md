@@ -18,3 +18,18 @@ Use the fake endpoints provided to create a list of absences.
 - **React Query**: For fetching, and updating the data in the application.
 - **Shadcn**: For sleek and modern UI components.
 - **React Table**: For handling, displaying, and managing the absences data with sorting and filtering capabilities.
+
+## Run Instructions
+
+To run this project locally, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Navigate to the project directory in your terminal.
+3. Install the dependencies by running `npm install`.
+4. Copy the `.env` example
+5. Start the development server by running `npm run dev`.
+6. Open your browser and navigate to `http://localhost:3000` to view the application.
+
+## Live Demo
+
+You can view a live demo of the application at [Absence Manager](https://brighthr-lovat.vercel.app/).
