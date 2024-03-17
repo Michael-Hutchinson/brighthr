@@ -45,7 +45,20 @@ const columns = (
   },
   {
     accessorKey: 'startDate',
-    header: 'Start Date',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Start Date
+          <LuArrowDownUp className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    },
+    id: 'startDate',
+    sortingFn: 'datetime',
+    cell: (info) => formatDate(info.row.original.startDate),
   },
   {
     accessorKey: 'endDate',
@@ -53,7 +66,10 @@ const columns = (
     id: 'endDate',
     cell: (info) =>
       formatDate(
-        calculateEndDate(info.row.original.startDate, info.row.original.days)
+        calculateEndDate(
+          formatDate(info.row.original.startDate),
+          info.row.original.days
+        )
       ),
   },
   {

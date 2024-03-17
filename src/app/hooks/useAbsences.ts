@@ -17,7 +17,6 @@ const fetchAbsences = async (): Promise<Absence[]> => {
     return absences.map((absence) => ({
       ...absence,
       absenceType: formatAbsenceType(absence.absenceType),
-      startDate: formatDate(absence.startDate),
     }));
   } catch (error) {
     console.error('Error fetching absences:', error);
