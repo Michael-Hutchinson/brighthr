@@ -1,5 +1,6 @@
 import { Absence, AbsenceWithConflict } from '@/types/types';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import formatAbsenceType from '../helpers/formatAbsenseType';
 
 const fetchAbsences = async (): Promise<Absence[]> => {
   try {
@@ -11,7 +12,11 @@ const fetchAbsences = async (): Promise<Absence[]> => {
         `Fetching absences failed with status: ${response.status}`
       );
     }
-    return response.json();
+    const absences: Absence[] = await response.json();
+    return absences.map((absence) => ({
+      ...absence,
+      absenceType: formatAbsenceType(absence.absenceType),
+    }));
   } catch (error) {
     console.error('Error fetching absences:', error);
     throw new Error('Error fetching absences');
