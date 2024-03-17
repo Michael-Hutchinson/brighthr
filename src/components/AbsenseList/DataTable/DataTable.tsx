@@ -17,21 +17,29 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { useState } from 'react';
+import { AbsenceWithConflict } from '@/types/types';
+import { useMemo, useState } from 'react';
 
-interface DataTableProps<TData, TValue> {
+interface DataTableProps<TData extends AbsenceWithConflict, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  employeeId: string | null;
 }
 
-const DataTable = <TData, TValue>({
+const DataTable = <TData extends AbsenceWithConflict, TValue>({
   columns,
   data,
+  employeeId,
 }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
 
+  const filteredData = useMemo(() => {
+    if (!employeeId) return data;
+    return data.filter((item) => item.employee.id === employeeId);
+  }, [data, employeeId]);
+
   const table = useReactTable({
-    data,
+    data: filteredData,
     columns,
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,

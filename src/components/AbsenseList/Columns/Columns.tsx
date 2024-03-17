@@ -11,15 +11,26 @@ import {
 } from '@/components/ui/tooltip';
 import { AbsenceWithConflict } from '@/types/types';
 import { ColumnDef } from '@tanstack/react-table';
+import { Dispatch, SetStateAction } from 'react';
 import { LuArrowDownUp } from 'react-icons/lu';
 import { MdErrorOutline } from 'react-icons/md';
 
-const columns: ColumnDef<AbsenceWithConflict>[] = [
+const columns = (
+  setEmployeeId: Dispatch<SetStateAction<string | null>>
+): ColumnDef<AbsenceWithConflict>[] => [
   {
     accessorFn: (row) => `${row.employee.firstName} ${row.employee.lastName}`,
     id: 'fullName',
     accessorKey: 'employeeName',
-    cell: (info) => info.getValue(),
+    cell: ({ row }) => (
+      <Button
+        variant='ghost'
+        className='cursor-pointer'
+        onClick={() => setEmployeeId(row.original.employee.id)}
+      >
+        {row.original.employee.firstName} {row.original.employee.lastName}
+      </Button>
+    ),
     header: ({ column }) => {
       return (
         <Button
