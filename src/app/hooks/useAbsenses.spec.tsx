@@ -42,9 +42,9 @@ describe('useAbsencesWithConflicts', () => {
     const absences: Absence[] = [
       {
         id: 0,
-        startDate: '2022-05-28T04:39:06.470Z',
+        startDate: new Date('2022-05-28T04:39:06.470Z'),
         days: 9,
-        absenceType: 'SICKNESS',
+        absenceType: 'Sickness',
         employee: {
           firstName: 'Rahaf',
           lastName: 'Deckard',
